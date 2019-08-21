@@ -69,7 +69,7 @@ internal void ValidateData(IWebDriver driver, string code, string desc, string p
     }
     catch(Exception e)
     {
-        Console.WriteLine("Test Failed, Code not found" + e);
+        Console.WriteLine(e);
     }
 }
 }
