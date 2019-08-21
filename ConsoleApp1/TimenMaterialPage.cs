@@ -47,7 +47,7 @@ internal void ValidateData(IWebDriver driver, string code, string desc, string p
             foreach (var row in rows)
             {
                 var columns = row.FindElements(By.TagName("td")).ToList();
-                if ((columns[0].Text == code) && (columns[2].Text == desc) && (columns[3].Text == price + "01"))
+                if ((columns[0].Text == code) && (columns[2].Text == desc) && (columns[3].Text == price))
                 {
                     Console.WriteLine("Test Passed, code found on table");
                     return;
