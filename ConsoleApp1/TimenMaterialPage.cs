@@ -38,7 +38,6 @@ internal void ValidateData(IWebDriver driver, string code, string desc, string p
     // assignment 3 is to verify that the time an material object that you created is displayed on the table
     try
     {
-
         WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 30));
         IWebElement table = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table")));
 
@@ -48,14 +47,14 @@ internal void ValidateData(IWebDriver driver, string code, string desc, string p
             foreach (var row in rows)
             {
                 var columns = row.FindElements(By.TagName("td")).ToList();
-                if ((columns[0].Text == code) && (columns[2].Text == desc) && (columns[3].Text == price))
+                if ((columns[0].Text == code) && (columns[2].Text == desc) && (columns[3].Text == price + "01"))
                 {
                     Console.WriteLine("Test Passed, code found on table");
                     return;
                 }
             }
 
-            // Navigate to the next page until the next button is disabled
+            // Navigate to next page until the next button is disabled, otherwise the last page gets loaded again and again
             if(!driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[3]")).GetAttribute("class").Contains("k-state-disabled"))
             {
                 driver.FindElement(By.XPath("//span[contains(.,'Go to the next page')]")).Click();
